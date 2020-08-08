@@ -7,13 +7,20 @@ def max_profit_memo(price_list, count, cache):
 
     # 캐시에 값이 존재한다면 값 리턴
     if count in cache:
-        print("is profit -> %d"%cache.get(count))
         return cache.get(count)
+
+    # 팔아야할 개수가 리스트의 길이보다 크면 수익은 0
+    if count < len(price_list):
+        profit = price_list[count]
     else:
-        for i in range(count+1):
-            if profit < price_list[count-i] + price_list[i]:
-                print("%d %d => %d"%(count,i,(price_list[count-i] + price_list[i])))
-                profit = price_list[count-i] + price_list[i]
+        profit = 0
+
+
+    for i in range(1,int(count/2)+1):
+        profit = max(profit,max_profit_memo(price_list,i,cache)+max_profit_memo(price_list,count-i,cache))
+
+    cache[count] = profit
+    return profit
 
 def max_profit(price_list, count):
     max_profit_cache = {}
@@ -22,5 +29,5 @@ def max_profit(price_list, count):
 
 # 테스트
 print(max_profit([0, 100, 400, 800, 900, 1000], 5))
-# print(max_profit([0, 100, 400, 800, 900, 1000], 10))
-# print(max_profit([0, 100, 400, 800, 900, 1000, 1400, 1600, 2100, 2200], 9))
+print(max_profit([0, 100, 400, 800, 900, 1000], 10))
+print(max_profit([0, 100, 400, 800, 900, 1000, 1400, 1600, 2100, 2200], 9))

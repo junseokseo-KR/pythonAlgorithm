@@ -1,16 +1,19 @@
 def fib_memo(n, cache):
-    return cache.get(n-1)
+    # base case
+    if n<3:
+        return 1
 
+    if cache.get(n) != None:
+        return cache.get(n)
+    else:
+        cache[n] = fib_memo(n-1,cache)+fib_memo(n-2,cache)
+        return cache.get(n)
 
 def fib(n):
     # n번째 피보나치 수를 담는 사전
     fib_cache = {}
-    if n==1 or n==2:
-        fib_cache = {n, 1}
-    return fib_memo(n, fib_cache)
-
-
+    return fib_memo(n,fib_cache)
 # 테스트
-print(fib(10))
-print(fib(50))
-print(fib(100))
+print(fib(8))
+print(fib(53))
+print(fib(213))

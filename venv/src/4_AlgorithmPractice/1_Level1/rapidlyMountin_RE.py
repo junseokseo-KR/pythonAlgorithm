@@ -1,32 +1,16 @@
 def select_stops(water_stops, capacity):
-    # 코드를 작성하세요.
-    course = []
-    start, end, water = 0, 0, capacity
+    prev = 0
+    stop = []
 
-    while end != len(water_stops):
-        if start == 0:
-            water -= water_stops[end]
+    # 물 한번으로 최대한 많이 가는 탐욕적 선택 방법 이용
 
-        else:
-            water -= (water_stops[end] - water_stops[start])
+    for i in range(len(water_stops)-1):
+        if water_stops[i] - prev > capacity:
+            prev = water_stops[i-1]
+            stop.append(prev)
 
-        if water > 0:
-            end += 1
-        else:
-            if water < 0:
-                if end-start > 1:
-                    start = end - 1
-                else:
-                    start = end
-                    course.append(water_stops[start-1])
-            else:
-                start = end
-            end = start + 1
-            course.append(water_stops[start])
-        water = capacity
-    course.append(water_stops[len(water_stops) - 1])
-    print(course)
-
+    stop.append(water_stops[len(water_stops)-1])
+    return stop
 
 # 테스트
 list1 = [1, 4, 5, 7, 11, 12, 13, 16, 18, 20, 22, 24, 26]

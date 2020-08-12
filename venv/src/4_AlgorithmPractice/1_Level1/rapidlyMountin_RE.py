@@ -34,7 +34,3 @@ print(select_stops(list1, 4))
 
 list2 = [5, 8, 12, 17, 20, 22, 23, 24, 28, 32, 38, 42, 44, 47]
 print(select_stops(list2, 6))
-
-"""
-    start가 0이고 end가 0이면 
-"""

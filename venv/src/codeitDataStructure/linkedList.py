@@ -1,3 +1,7 @@
+import time
+
+start = time.time()
+
 class Node:
     def __init__(self,data):
         self.data = data
@@ -103,3 +107,5 @@ list.pop_left()
 print(list)
 list.pop_left()
 print(list)
+
+print("실행시간 : ",time.time()-start)

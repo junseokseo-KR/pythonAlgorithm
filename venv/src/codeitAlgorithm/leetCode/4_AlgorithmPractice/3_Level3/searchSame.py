@@ -10,6 +10,7 @@ def find_same_number(some_list, start=0, end=None):
         if some_list[start] == some_list[i]:
             return some_list[start]
 
+    
     start += 1
     return find_same_number(some_list, start)
 
